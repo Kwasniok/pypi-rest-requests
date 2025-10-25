@@ -1,0 +1,42 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "rest-requests"
+dynamic = ["version"]
+description = 'Asynchronous REST requests with proxy support.'
+readme = "README.md"
+requires-python = ">=3.13"
+license = "CC-BY-SA-4.0"
+keywords = [
+  "rest",
+  "api",
+]
+authors = [
+  { name = "Kwasniok", email = "Kwasniok@users.noreply.github.com" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.13",
+]
+dependencies = [
+  "aiohttp>=3.13",
+  "aiohttp-socks>=0.10",
+]
+
+[project.urls]
+Documentation = "https://github.com/Kwasniok/pypi-rest-requests#readme"
+Issues = "https://github.com/Kwasniok/pypi-rest-requests/issues"
+Source = "https://github.com/Kwasniok/pypi-rest-requests"
+
+[tool.hatch.version]
+path = "src/rest_requests/__about__.py"
+
+[tool.hatch.envs.hatch-test]
+dependencies = [
+  "pytest>=8.4",
+  "pytest-asyncio>=1.2",
+  "asyncio>=4.0.0",
+]
