@@ -44,6 +44,11 @@ if __name__ == "__main__":
 
 ```
 
+## Contributors
+
+- [@AlexanderKlemps](https://github.com/AlexanderKlemps)
+- [@Kwasniok](https://github.com/Kwasniok)
+
 ## License
 
 `rest-requests` is distributed under the terms of the [CC-BY-SA-4.0](http://creativecommons.org/licenses/by-sa/4.0) license.

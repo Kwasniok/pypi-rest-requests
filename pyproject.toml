@@ -15,6 +15,10 @@ keywords = [
 ]
 authors = [
   { name = "Kwasniok", email = "Kwasniok@users.noreply.github.com" },
+  { name = "AlexanderKlemps", email = "AlexanderKlemps@users.noreply.github.com" },
+]
+maintainers = [
+  { name = "Kwasniok", email = "Kwasniok@users.noreply.github.com" },
 ]
 classifiers = [
   "Development Status :: 4 - Beta",
