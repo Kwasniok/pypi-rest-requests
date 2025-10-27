@@ -1,7 +1,7 @@
 """
 Asynchronous REST compatible requests module.
 
-Supports basic HTTP methods with JSON payloads and has proxy support.
+Supports basic HTTP methods with JSON payloads only and has proxy support.
 """
 
 from typing import Any
@@ -37,7 +37,7 @@ async def _request(
     body: JSON,
     session: aiohttp.ClientSession,
     dry_run: bool = False,
-) -> str | dict[str, Any]:
+) -> JSON:
     """
     Raises:
         aiohttp.client_exceptions.ClientResponseError: If the response status is not successful.
@@ -62,8 +62,6 @@ async def _request(
     async with request_func(url=url, headers=headers, json=body) as response:
         if response.content_type == "application/json":
             response_body = await response.json()
-        elif response.content_type.startswith("text/plain"):
-            response_body = await response.text()
         else:
             raise RuntimeError(
                 f"Unsupported response content type: {response.content_type}"
@@ -102,9 +100,9 @@ async def request(
     timeout: int = 600,
     proxy_url: str | None = None,
     dry_run: bool = False,
-) -> str | JSON:
+) -> JSON:
     """
-    Makes an asynchronous request.
+    Makes an asynchronous REST API request. JSON bodies only.
 
     Raises:
         aiohttp.client_exceptions.ClientResponseError: If the response status is not successful.

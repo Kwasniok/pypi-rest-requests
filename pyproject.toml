@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "rest-requests"
 dynamic = ["version"]
-description = 'Asynchronous REST requests with proxy support.'
+description = 'Lightweight asynchronous REST API requests. JSON bodies only. Proxy support.)'
 readme = "README.md"
 requires-python = ">=3.10"
 license = "CC-BY-SA-4.0"
