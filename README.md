@@ -5,7 +5,7 @@
 
 -----
 
-Asynchronous SLURM REST requests with proxy support.
+Lightweight asynchronous REST API requests. JSON bodies only. Proxy support.
 
 ## Installation
 
