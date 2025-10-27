@@ -26,9 +26,7 @@ class RequestMethod(Enum):
     POST = "post"
     PUT = "put"
     DELETE = "delete"
-    CONNECT = "connect"
     OPTIONS = "options"
-    TRACE = "trace"
     PATCH = "patch"
 
 
@@ -81,12 +79,18 @@ def _resolve_method(
     match method:
         case RequestMethod.GET:
             request_func = session.get
+        case RequestMethod.HEAD:
+            request_func = session.head
         case RequestMethod.POST:
             request_func = session.post
         case RequestMethod.PUT:
             request_func = session.put
         case RequestMethod.DELETE:
             request_func = session.delete
+        case RequestMethod.OPTIONS:
+            request_func = session.options
+        case RequestMethod.PATCH:
+            request_func = session.patch
     return request_func
 
 
