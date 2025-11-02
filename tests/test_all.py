@@ -49,5 +49,12 @@ async def test_request_error():
             body={"invalid": "data"},
         )
 
-        assert e.status == 404  # type: ignore
-        assert e.message == "Not Found"  # type: ignore
+
+@pytest.mark.asyncio
+async def test_request_text_response():
+
+    with pytest.raises(RuntimeError) as e:
+        await request(
+            method=RequestMethod.GET,
+            url="https://example.com",
+        )

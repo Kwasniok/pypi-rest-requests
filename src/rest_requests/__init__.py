@@ -63,6 +63,11 @@ async def _request(
         if response.content_type == "application/json":
             response_body = await response.json()
         else:
+            if response.content_type.startswith("text/"):
+                text = await response.text()
+                raise RuntimeError(
+                    f"Unsupported response content type. Received {response.content_type} with body:\n{text}"
+                )
             raise RuntimeError(
                 f"Unsupported response content type: {response.content_type}"
             )
@@ -71,9 +76,9 @@ async def _request(
 
 
 def _resolve_method(
-        method: RequestMethod,
-        session: aiohttp.ClientSession,
-    ):
+    method: RequestMethod,
+    session: aiohttp.ClientSession,
+):
     match method:
         case RequestMethod.GET:
             request_func = session.get
