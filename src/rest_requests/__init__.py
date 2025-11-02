@@ -4,16 +4,14 @@ Asynchronous REST compatible requests module.
 Supports basic HTTP methods with JSON payloads only and has proxy support.
 """
 
-from typing import Any
 from enum import Enum
 import logging
 import aiohttp
 from aiohttp_socks import ProxyConnector
 
-_logger = logging.getLogger(__name__)
+from rest_requests.json import JSON, diff as json_diff
 
-_JSONNode = str | int | float | bool | None | dict[str, "_JSONNode"] | list["_JSONNode"]
-JSON = dict[str, "_JSONNode"] | list["_JSONNode"]
+_logger = logging.getLogger(__name__)
 
 
 class RequestMethod(Enum):
