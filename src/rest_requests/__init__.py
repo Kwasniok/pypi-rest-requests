@@ -32,7 +32,7 @@ async def _request(
     method: RequestMethod,
     url: str,
     headers: dict[str, str] | None,
-    body: JSON,
+    body: JSON | None,
     session: aiohttp.ClientSession,
     dry_run: bool = False,
 ) -> JSON:
@@ -42,6 +42,7 @@ async def _request(
     """
     headers = (headers or {}) | {
         "Content-Type": "application/json",
+        "Accept": "application/json",
     }
     request_func = _resolve_method(method, session)
 
@@ -99,7 +100,7 @@ async def request(
     method: RequestMethod,
     url: str,
     headers: dict[str, str] | None = None,
-    body: JSON = {},
+    body: JSON | None = None,
     timeout: int = 600,
     proxy_url: str | None = None,
     dry_run: bool = False,
