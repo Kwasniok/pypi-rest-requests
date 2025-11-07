@@ -9,7 +9,7 @@ import logging
 import aiohttp
 from aiohttp_socks import ProxyConnector
 
-from rest_requests.json import JSON, diff as json_diff
+from rest_requests.json import JSON, diff as json_diff, _dumps
 
 _logger = logging.getLogger(__name__)
 
@@ -70,8 +70,18 @@ async def _request(
             raise RuntimeError(
                 f"Unsupported response content type: {response.content_type}"
             )
-        response.raise_for_status()
-        return response_body
+        try:
+            response.raise_for_status()
+            return response_body
+        except aiohttp.ClientResponseError as e:
+            _logger.error(f"Request failed: {e}")
+            if response.content_type == "application/json":
+                response_body = await response.json()
+                _logger.error(f"Response body:\n{_dumps(response_body, indent=2)}")
+            elif response.content_type.startswith("text/"):
+                text = await response.text()
+                _logger.error(f"Response body:\n{text}")
+            raise
 
 
 def _resolve_method(

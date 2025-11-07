@@ -1,3 +1,4 @@
+from json import dumps as _dumps
 from typing import Any, Type, TypeAlias, Iterable, cast
 
 _JSONNode: TypeAlias = (
